@@ -45,12 +45,12 @@ export default function Home() {
               <ul className="flex space-x-6  flex-grow justify-end flex-wrap items-center">
                 <Link href="/recent">
                   <li className="p-2 bg-blue-200 rounded-lg text-lg bg-opacity-50">
-                    2022
+                    Blade Tracking
                   </li>{" "}
                 </Link>
                 <Link href="/about">
                   <li className="p-2 bg-blue-200 rounded-lg text-lg bg-opacity-50">
-                    About Us
+                    Right of Way Analysis
                   </li>{" "}
                 </Link>
               </ul>
@@ -101,9 +101,10 @@ export default function Home() {
           </h1>
           <p className="text-xl md:text-2xl">July 2023</p>
           <p className="text-lg md:text-xl pt-12 md:px-48">
-            We are a group of students who want to share our passion for
-            mathematics with others! Register today to compete in this online
-            competition for prizes and an enriching experience!
+            Lorem ipsum odor amet, consectetuer adipiscing elit. 
+            Per orci nunc hac euismod ultrices. Metus taciti suspendisse nec mauris quam sed laoreet? 
+            Justo varius pretium enim maximus sapien ante habitasse laoreet. Justo odio enim class donec urna magna sit dolor. 
+            Efficitur tristique donec velit tempus mus tristique. Dignissim mi vel id class ex hendrerit cras.
           </p>
         </div>
         <div className="-mt-12 mb-32 border-b-2 border-black"></div>
@@ -114,11 +115,10 @@ export default function Home() {
               What We Do
             </h2>
             <p className="text-xl md:text-2xl text-gray-600">
-              The Online International Math Competition, or OIMC, will take
-              place for the second time in July 2023. This competition is run by
-              high school students and is open for 7th to 10th graders from
-              around the world to compete for prizes. More information about our
-              team and the competition is listed on other pages.
+              Lorem ipsum odor amet, consectetuer adipiscing elit. 
+            Per orci nunc hac euismod ultrices. Metus taciti suspendisse nec mauris quam sed laoreet? 
+            Justo varius pretium enim maximus sapien ante habitasse laoreet. Justo odio enim class donec urna magna sit dolor. 
+            Efficitur tristique donec velit tempus mus tristique. Dignissim mi vel id class ex hendrerit cras.
             </p>
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function Home() {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-4 md:pb-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4">
-              Sponsors
+              images
             </h2>
             <p className="text-xl text-gray-600"></p>
           </div>
@@ -137,43 +137,43 @@ export default function Home() {
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/taskade.png" width={350} height={300} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1 pb-4">
-                Taskade
+                image
               </h4>
             </div>
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/wolfram.png" width={130} height={130} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1">
-                Wolfram Alpha
+                image
               </h4>
             </div>
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/AoPS.png" width={300} height={300} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1">
-                Art of Problem Solving
+                image
               </h4>
             </div>
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/desmos.png" width={350} height={350} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1 pb-7">
-                Desmos
+                image
               </h4>
             </div>
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/BBMC.png" width={300} height={300} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1">
-                Bonnie Branch Math Circle
+                image
               </h4>
             </div>
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/daily.png" width={265} height={265} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1">
-                Daily Challenge with Po-Shen Loh
+                image
               </h4>
             </div>
           </div>
           <div className="max-w-3xl mx-auto text-center pb-4 pt-8 md:pb-6">
             <h2 className="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4">
-              Partners
+              more images
             </h2>
             <p className="text-xl text-gray-600"></p>
           </div>
@@ -184,7 +184,7 @@ export default function Home() {
             <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
               <Image src="/imgs/ssmo.jpg" width={350} height={300} />
               <h4 className="mt-4 text-xl font-bold leading-snug  tracking-tight mb-1 pb-4">
-                SSMO
+                image
               </h4>
             </div>
           </div>
