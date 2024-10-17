@@ -44,16 +44,16 @@
             border-radius: 5px;
             font-size: 20px;
             color: white;
-            line-height: 120px;
+            line-height: 120px; 
             font-weight: bold;
         }
 
         #rightOfWayBox1 {
-            background-color: #dc3545; /* Red for Fencer 1 */
+            background-color: #dc3545; /* red fencer 1 */
         }
 
         #rightOfWayBox2 {
-            background-color: #28a745; /* Green for Fencer 2 */
+            background-color: #28a745; /* green fencer 2 */
         }
 
         .active {
@@ -111,9 +111,11 @@
     <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
     <br><br>
 
+    <button onclick="playVideo()">Play</button>
     <button onclick="pauseVideo()">Pause</button>
     <button onclick="replayVideo()">Replay</button>
     <button onclick="slowMotion()">Slow Motion</button>
+    <button onclick="normalSpeed()">Normal Speed</button>
 
     <script>
         const videoUpload = document.getElementById('videoUpload');
@@ -124,6 +126,10 @@
             const videoURL = URL.createObjectURL(file);
             videoPlayer.src = videoURL;
         });
+
+        function playVideo() {
+            videoPlayer.play();
+        }
 
         function pauseVideo() {
             videoPlayer.pause();
@@ -138,8 +144,13 @@
             videoPlayer.playbackRate = 0.5;
         }
 
+        function normalSpeed() {
+            videoPlayer.playbackRate = 1.0;
+        }
+
         function detectRightOfWay() {
             const currentTime = videoPlayer.currentTime;
+
             if (Math.floor(currentTime) % 2 === 0) {
                 document.getElementById('rightOfWayBox1').classList.add('active');
                 document.getElementById('rightOfWayBox2').classList.remove('active');
