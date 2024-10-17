@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fencing Right of Way Detector</title>
+    <style>
+        #rightOfWayBox1, #rightOfWayBox2 {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+        }
+        #rightOfWayBox1 { background-color: gray; }
+        #rightOfWayBox2 { background-color: gray; }
+        .active { background-color: yellow; }
+    </style>
+</head>
+<body>
+    <!-- Video Upload Section -->
+    <h1>Upload Fencing Video</h1>
+    <input type="file" id="videoUpload" accept="video/*">
+    <br><br>
+
+    <!-- Video Playback Section -->
+    <h1>Video Playback</h1>
+    <video id="videoPlayer" width="600" controls></video>
+    <br><br>
+
+    <!-- Right of Way Indicator -->
+    <h1>Right of Way</h1>
+    <div id="rightOfWayBox1">Fencer 1</div>
+    <div id="rightOfWayBox2">Fencer 2</div>
+    <br><br>
+
+    <!-- Playback Controls -->
+    <button onclick="pauseVideo()">Pause</button>
+    <button onclick="replayVideo()">Replay</button>
+    <button onclick="slowMotion()">Slow Motion</button>
+
+    <script>
+        // Handle video upload and playback
+        const videoUpload = document.getElementById('videoUpload');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        videoUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const videoURL = URL.createObjectURL(file);
+            videoPlayer.src = videoURL;
+        });
+
+        // Control Functions
+        function pauseVideo() {
+            videoPlayer.pause();
+        }
+
+        function replayVideo() {
+            videoPlayer.currentTime = 0;
+            videoPlayer.play();
+        }
+
+        function slowMotion() {
+            videoPlayer.playbackRate = 0.5;
+        }
+
+        // Placeholder function to simulate right of way detection
+        function detectRightOfWay() {
+            const currentTime = videoPlayer.currentTime;
+
+            // Example: Toggle between Fencer 1 and Fencer 2 having right of way
+            if (Math.floor(currentTime) % 2 === 0) {
+                document.getElementById('rightOfWayBox1').classList.add('active');
+                document.getElementById('rightOfWayBox2').classList.remove('active');
+            } else {
+                document.getElementById('rightOfWayBox1').classList.remove('active');
+                document.getElementById('rightOfWayBox2').classList.add('active');
+            }
+        }
+
+        // Attach the right of way detection to the video playback
+        videoPlayer.addEventListener('timeupdate', detectRightOfWay);
+    </script>
+</body>
+</html>
