@@ -3,43 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fencing Right of Way Detector</title>
+    <title>Fencing Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #a8c8ff 0%, #f2e0d5 100%);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        #videoUpload {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        video {
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
         #rightOfWayBox1, #rightOfWayBox2 {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             display: inline-block;
             margin: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+            color: white;
+            line-height: 120px;
+            font-weight: bold;
         }
-        #rightOfWayBox1 { background-color: gray; }
-        #rightOfWayBox2 { background-color: gray; }
-        .active { background-color: yellow; }
+
+        #rightOfWayBox1 {
+            background-color: #dc3545; /* Red for Fencer 1 */
+        }
+
+        #rightOfWayBox2 {
+            background-color: #28a745; /* Green for Fencer 2 */
+        }
+
+        .active {
+            opacity: 1;
+            transition: background-color 0.5s ease;
+        }
+
+        .inactive {
+            opacity: 0.5;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            video {
+                width: 100%;
+            }
+
+            #rightOfWayBox1, #rightOfWayBox2 {
+                width: 80px;
+                height: 80px;
+                line-height: 80px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Video Upload Section -->
-    <h1>Upload Fencing Video</h1>
+    <h1>Fencing Visualizer</h1>
+    
+    <h2>Upload Fencing Video</h2>
     <input type="file" id="videoUpload" accept="video/*">
     <br><br>
 
-    <!-- Video Playback Section -->
-    <h1>Video Playback</h1>
-    <video id="videoPlayer" width="600" controls></video>
+    <h2>Video Playback</h2>
+    <video id="videoPlayer" controls></video>
     <br><br>
 
-    <!-- Right of Way Indicator -->
-    <h1>Right of Way</h1>
-    <div id="rightOfWayBox1">Fencer 1</div>
-    <div id="rightOfWayBox2">Fencer 2</div>
+    <h2>Right of Way</h2>
+    <div id="rightOfWayBox1" class="inactive">Fencer 1</div>
+    <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
     <br><br>
 
-    <!-- Playback Controls -->
     <button onclick="pauseVideo()">Pause</button>
     <button onclick="replayVideo()">Replay</button>
     <button onclick="slowMotion()">Slow Motion</button>
 
     <script>
-        // Handle video upload and playback
         const videoUpload = document.getElementById('videoUpload');
         const videoPlayer = document.getElementById('videoPlayer');
 
@@ -49,7 +125,6 @@
             videoPlayer.src = videoURL;
         });
 
-        // Control Functions
         function pauseVideo() {
             videoPlayer.pause();
         }
@@ -63,11 +138,8 @@
             videoPlayer.playbackRate = 0.5;
         }
 
-        // Placeholder function to simulate right of way detection
         function detectRightOfWay() {
             const currentTime = videoPlayer.currentTime;
-
-            // Example: Toggle between Fencer 1 and Fencer 2 having right of way
             if (Math.floor(currentTime) % 2 === 0) {
                 document.getElementById('rightOfWayBox1').classList.add('active');
                 document.getElementById('rightOfWayBox2').classList.remove('active');
@@ -77,7 +149,6 @@
             }
         }
 
-        // Attach the right of way detection to the video playback
         videoPlayer.addEventListener('timeupdate', detectRightOfWay);
     </script>
 </body>
