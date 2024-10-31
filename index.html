@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fencing Visualizer</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -162,5 +163,38 @@
 
         videoPlayer.addEventListener('timeupdate', detectRightOfWay);
     </script>
+
+    <h2>Image Analysis</h2>
+    <py-script>
+        import cv2
+        import numpy as np
+        from pyodide.http import open_url
+
+        def process_image(image_url):
+            # Load and process image
+            frame = cv2.imread(open_url(image_url))
+
+            # Resize for display
+            frame = cv2.resize(frame, (600, 400))
+            hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+            # Define color range for green and orange
+            lower_green = np.array([50, 150, 180])
+            upper_green = np.array([100, 220, 255])
+            lower_orange = np.array([0, 100, 180])
+            upper_orange = np.array([50, 200, 255])
+
+            # Create masks
+            mask_green = cv2.inRange(hsv, lower_green, upper_green)
+            mask_orange = cv2.inRange(hsv, lower_orange, upper_orange)
+            combined_mask = cv2.bitwise_or(mask_green, mask_orange)
+            res_combined = cv2.bitwise_and(frame, frame, mask=combined_mask)
+
+            # Display processed image
+            cv2.imshow('Masked Result (Green and Orange)', res_combined)
+
+        # Example call (replace with actual image URL)
+        process_image("https://example.com/twoblade.jpg")
+    </py-script>
 </body>
 </html>
