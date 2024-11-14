@@ -29,6 +29,9 @@
         .left-side, .right-side {
             flex: 1;
             max-width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #videoUpload {
@@ -56,6 +59,7 @@
             color: white;
             line-height: 120px; 
             font-weight: bold;
+            text-align: center;
         }
 
         #rightOfWayBox1 {
@@ -121,7 +125,7 @@
             <h2>Right of Way</h2>
             <div id="rightOfWayBox1" class="inactive">Fencer 1</div>
             <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
-            <br><br>
+            <br>
             <button onclick="playVideo()">Play</button>
             <button onclick="pauseVideo()">Pause</button>
             <button onclick="replayVideo()">Replay</button>
