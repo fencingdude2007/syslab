@@ -11,6 +11,33 @@
             background: linear-gradient(135deg, #a8c8ff 0%, #f2e0d5 100%);
             margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .left-side, .right-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-side {
+            max-width: 45%;
+        }
+
+        .right-side {
+            max-width: 45%;
         }
 
         h1 {
@@ -20,18 +47,10 @@
             text-align: center;
         }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .left-side, .right-side {
-            flex: 1;
-            max-width: 45%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
         }
 
         #videoUpload {
@@ -45,8 +64,16 @@
         video {
             border: 2px solid #007BFF;
             border-radius: 5px;
+            margin-bottom: 20px;
             width: 100%;
-            max-width: 100%;
+            max-width: 600px;
+        }
+
+        .right-of-way-boxes {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         #rightOfWayBox1, #rightOfWayBox2 {
@@ -57,7 +84,7 @@
             border-radius: 5px;
             font-size: 20px;
             color: white;
-            line-height: 120px; 
+            line-height: 120px;
             font-weight: bold;
             text-align: center;
         }
@@ -70,13 +97,12 @@
             background-color: #28a745; /* green for fencer 2 */
         }
 
-        .active {
-            opacity: 1;
-            transition: background-color 0.5s ease;
-        }
-
-        .inactive {
-            opacity: 0.5;
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         button {
@@ -98,39 +124,57 @@
         @media (max-width: 600px) {
             .container {
                 flex-direction: column;
+                width: 100%;
+            }
+
+            .left-side, .right-side {
+                max-width: 100%;
+                margin-bottom: 20px;
             }
 
             #rightOfWayBox1, #rightOfWayBox2 {
-                width: 80px;
-                height: 80px;
-                line-height: 80px;
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
                 font-size: 16px;
+            }
+
+            button {
+                width: 100%;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Fencing Visualizer</h1>
-    
     <div class="container">
+        <!-- Left Side -->
         <div class="left-side">
+            <h1>Fencing Visualizer</h1>
+            
             <h2>Upload Fencing Video</h2>
             <input type="file" id="videoUpload" accept="video/*">
             <br><br>
+
             <h2>Video Playback</h2>
             <video id="videoPlayer" controls></video>
         </div>
 
+        <!-- Right Side -->
         <div class="right-side">
             <h2>Right of Way</h2>
-            <div id="rightOfWayBox1" class="inactive">Fencer 1</div>
-            <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
-            <br>
-            <button onclick="playVideo()">Play</button>
-            <button onclick="pauseVideo()">Pause</button>
-            <button onclick="replayVideo()">Replay</button>
-            <button onclick="slowMotion()">Slow Motion</button>
-            <button onclick="normalSpeed()">Normal Speed</button>
+            <div class="right-of-way-boxes">
+                <div id="rightOfWayBox1" class="inactive">Fencer 1</div>
+                <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
+            </div>
+
+            <div class="buttons">
+                <button onclick="playVideo()">Play</button>
+                <button onclick="pauseVideo()">Pause</button>
+                <button onclick="replayVideo()">Replay</button>
+                <button onclick="slowMotion()">Slow Motion</button>
+                <button onclick="normalSpeed()">Normal Speed</button>
+            </div>
         </div>
     </div>
 
