@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fencing Visualizer</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #a8c8ff 0%, #f2e0d5 100%);
             margin: 0;
             padding: 20px;
-            text-align: center;
         }
 
         h1 {
             color: #333;
             margin-bottom: 20px;
             font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .left-side, .right-side {
+            flex: 1;
+            max-width: 45%;
         }
 
         #videoUpload {
@@ -32,9 +42,8 @@
         video {
             border: 2px solid #007BFF;
             border-radius: 5px;
-            margin-bottom: 20px;
             width: 100%;
-            max-width: 600px;
+            max-width: 100%;
         }
 
         #rightOfWayBox1, #rightOfWayBox2 {
@@ -50,11 +59,11 @@
         }
 
         #rightOfWayBox1 {
-            background-color: #dc3545; /* red fencer 1 */
+            background-color: #dc3545; /* red for fencer 1 */
         }
 
         #rightOfWayBox2 {
-            background-color: #28a745; /* green fencer 2 */
+            background-color: #28a745; /* green for fencer 2 */
         }
 
         .active {
@@ -83,8 +92,8 @@
         }
 
         @media (max-width: 600px) {
-            video {
-                width: 100%;
+            .container {
+                flex-direction: column;
             }
 
             #rightOfWayBox1, #rightOfWayBox2 {
@@ -99,24 +108,27 @@
 <body>
     <h1>Fencing Visualizer</h1>
     
-    <h2>Upload Fencing Video</h2>
-    <input type="file" id="videoUpload" accept="video/*">
-    <br><br>
+    <div class="container">
+        <div class="left-side">
+            <h2>Upload Fencing Video</h2>
+            <input type="file" id="videoUpload" accept="video/*">
+            <br><br>
+            <h2>Video Playback</h2>
+            <video id="videoPlayer" controls></video>
+        </div>
 
-    <h2>Video Playback</h2>
-    <video id="videoPlayer" controls></video>
-    <br><br>
-
-    <h2>Right of Way</h2>
-    <div id="rightOfWayBox1" class="inactive">Fencer 1</div>
-    <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
-    <br><br>
-
-    <button onclick="playVideo()">Play</button>
-    <button onclick="pauseVideo()">Pause</button>
-    <button onclick="replayVideo()">Replay</button>
-    <button onclick="slowMotion()">Slow Motion</button>
-    <button onclick="normalSpeed()">Normal Speed</button>
+        <div class="right-side">
+            <h2>Right of Way</h2>
+            <div id="rightOfWayBox1" class="inactive">Fencer 1</div>
+            <div id="rightOfWayBox2" class="inactive">Fencer 2</div>
+            <br><br>
+            <button onclick="playVideo()">Play</button>
+            <button onclick="pauseVideo()">Pause</button>
+            <button onclick="replayVideo()">Replay</button>
+            <button onclick="slowMotion()">Slow Motion</button>
+            <button onclick="normalSpeed()">Normal Speed</button>
+        </div>
+    </div>
 
     <script>
         const videoUpload = document.getElementById('videoUpload');
@@ -163,38 +175,5 @@
 
         videoPlayer.addEventListener('timeupdate', detectRightOfWay);
     </script>
-
-    <h2>Image Analysis</h2>
-    <py-script>
-        import cv2
-        import numpy as np
-        from pyodide.http import open_url
-
-        def process_image(image_url):
-            # Load and process image
-            frame = cv2.imread(open_url(image_url))
-
-            # Resize for display
-            frame = cv2.resize(frame, (600, 400))
-            hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-            # Define color range for green and orange
-            lower_green = np.array([50, 150, 180])
-            upper_green = np.array([100, 220, 255])
-            lower_orange = np.array([0, 100, 180])
-            upper_orange = np.array([50, 200, 255])
-
-            # Create masks
-            mask_green = cv2.inRange(hsv, lower_green, upper_green)
-            mask_orange = cv2.inRange(hsv, lower_orange, upper_orange)
-            combined_mask = cv2.bitwise_or(mask_green, mask_orange)
-            res_combined = cv2.bitwise_and(frame, frame, mask=combined_mask)
-
-            # Display processed image
-            cv2.imshow('Masked Result (Green and Orange)', res_combined)
-
-        # Example call (replace with actual image URL)
-        process_image("https://example.com/twoblade.jpg")
-    </py-script>
 </body>
 </html>
